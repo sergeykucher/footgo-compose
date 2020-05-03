@@ -21,6 +21,4 @@ docker-compose start app
 
 docker-compose run maven_build
 
-docker-compose start app
-
-
+docker-compose restart app
