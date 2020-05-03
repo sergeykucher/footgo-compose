@@ -1,0 +1,27 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+    - ./mysql:/var/lib/mysql:rw
+    environment:
+    - MYSQL_ROOT_PASSWORD=pwd
+    - MYSQL_DATABASE=footgo
+
+  maven_build:
+    build: .
+    volumes:
+    - ./footgo:/footgo:rw
+    working_dir: /footgo
+    command: mvn clean package
+
+  app:
+    image: openjdk:8-jre-alpine
+    volumes:
+    - ./footgo:/footgo:rw
+    working_dir: /footgo
+    ports:
+    - 8080:8080
+    links:
+    - db:database
+    command: java -jar ./target/ROOT.jar
