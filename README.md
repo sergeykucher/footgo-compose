@@ -7,7 +7,7 @@ docker-compose up --no-start
 
 * Build app
 
-docker-compose run maven_build
+docker-compose run --rm maven_build
 
 * Start MySQL server and wait until it started
 
@@ -19,6 +19,6 @@ docker-compose start app
 
 * To rebuild app:
 
-docker-compose run maven_build
+docker-compose run --rm maven_build
 
 docker-compose restart app
